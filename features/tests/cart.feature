@@ -6,8 +6,11 @@ Feature: Tests for Target site
     When Click on Cart
     Then Verify 'Your cart is empty' is shown
 
-  Scenario: User can navigate to Sign In on Target
+
+  Scenario: User can add a product to the cart in Target
     Given Open target main page
-    When Click Account
-    When Click navigation menu, click Sign In
-    Then Sign in form is opened
+    When Search for tea
+    And Click on Add to Cart on search result
+    Then Click on 'Add to Cart'
+    And View Cart and Checkout
+    And Verify Cart item is present

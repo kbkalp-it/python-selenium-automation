@@ -10,7 +10,9 @@ Feature: Tests for Target site
   Scenario: User can add a product to the cart in Target
     Given Open target main page
     When Search for tea
-    And Click on Add to Cart on search result
-    Then Click on 'Add to Cart'
-    And View Cart and Checkout
-    And Verify Cart item is present
+    And Click on Add to Cart
+    And Store product name
+    And Click on 'Add to Cart' from side navigation
+    And Open cart page
+    Then Verify Cart item is present
+    And Verify cart has correct product

@@ -5,19 +5,14 @@ from selenium.webdriver.support import expected_conditions as EC
 from behave import given, when, then
 
 
-PRODUCT_TEXT = (By.XPATH, "//div[@data-test='lp-resultsCount']")
 ADD_TO_CART_BTN = (By.CSS_SELECTOR, "[id*='addToCartButton']")
 SIDE_NAV_ADD_TO_CART = (By.CSS_SELECTOR, "[data-test='content-wrapper'] [id*=addToCartButton]")
 SIDE_NAV_PRODUCT_NAME = (By.CSS_SELECTOR, "[data-test='content-wrapper'] h4")
 
-#VIEW_CART_CHECKOUT = (By.XPATH, "//a[contains(@class, 'styles_ndsButtonSecondary')]")
-
-
 
 @then('Verify search worked for {product}')
 def verify_search_results(context, product):
-    actual_text = context.driver.find_element(*PRODUCT_TEXT).text
-    assert product in actual_text, f"Error, expected {product} not in actual {actual_text}"
+    context.app.search_results_page.verify_search_results()
 
 @when('Click on Add to Cart')
 def click_on_search_results(context):

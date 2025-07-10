@@ -3,15 +3,12 @@ from time import sleep
 from behave import given, when, then
 from selenium.webdriver.common.by import By
 
-CART_EMPTY = (By.CSS_SELECTOR, '[data-test="boxEmptyMsg"]')
 ITEM_TITLE = (By.XPATH, "//div[@data-test='cartItem-title']")
 PRODUCT_NAME = (By.CSS_SELECTOR, "[data-test='cartItem-title']")
 
 @then("Verify 'Your cart is empty' is shown")
-def verify_your_cart_is_empty(context):
-    actual_text = context.driver.find_element(*CART_EMPTY).text
-    expected_text = 'Your cart is empty'
-    assert actual_text == expected_text, f"Error: expected \"{expected_text}\" not in \"{actual_text}\""
+def verify_cart_empty(context):
+     context.app.cart_page.verify_cart_empty()
 
 @then('Verify Cart item is present')
 def verify_cart_item_is_present(context):
